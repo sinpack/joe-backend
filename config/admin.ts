@@ -1,6 +1,6 @@
 // Define the type for env
 interface Env {
-  (key: string): string | boolean;
+  (key: string): string;
   bool(key: string, defaultValue?: boolean): boolean;
 }
 
