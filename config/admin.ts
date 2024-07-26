@@ -1,24 +1,27 @@
-// Define the type for env
-interface Env {
-  (key: string): string;
-  bool(key: string, defaultValue?: boolean): boolean;
-}
-
 import crypto from "crypto";
 
-// Generate a random salt (you should generate this once and store it securely)
+// Define the type for env
+interface Env {
+  (key: string, defaultValue?: string): string;
+  int(key: string, defaultValue?: number): number;
+  bool(key: string, defaultValue?: boolean): boolean;
+  array(key: string, defaultValue?: string[]): string[];
+}
+
+// Generate a random salt (for local development, you might use a fixed value)
 const generateSalt = () => crypto.randomBytes(16).toString("base64");
 
+// Define the configuration function
 export default ({ env }: { env: Env }) => ({
   auth: {
-    secret: env("ADMIN_JWT_SECRET"),
+    secret: env("ADMIN_JWT_SECRET", generateSalt()), // Ensure this is set
   },
   apiToken: {
-    salt: env(generateSalt()), // Ensure this is set
+    salt: env("API_TOKEN_SALT", generateSalt()), // Ensure this is set
   },
   transfer: {
     token: {
-      salt: env(generateSalt()), // Ensure this is set
+      salt: env("TRANSFER_TOKEN_SALT", generateSalt()), // Ensure this is set
     },
   },
   flags: {
