@@ -26,8 +26,8 @@
     "styled-components": "5.3.3"
   },
   "engines": {
-    "node": "19.9.0",
-    "npm": "10.9.0"
+    "node": "23.1.0",
+    "npm": "11.2.0"
   },
   "strapi": {
     "uuid": "9f583161-8e25-4f2f-a9ad-5839d40a7cc1"
